@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "e8464eac-e70f-49d3-b55c-4b0a6ef2a2af",
+		"name": "Like Collector",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"hirbod\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Authenticate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"hirbod\",\r\n    \"password\": \"1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "content-length",
+									"value": "48"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 03 Feb 2022 14:04:01 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"5a37a18d-6a11-4d25-9e6f-c00789a16610\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Renew Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"1234abcd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/renew",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"renew"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Renew Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"1234abcd\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/renew",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"renew"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "content-length",
+									"value": "48"
+								},
+								{
+									"key": "date",
+									"value": "Fri, 04 Feb 2022 14:46:06 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"128d9beb-ab53-4d14-8bca-778d50d19535\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "Get Board",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth",
+								"value": "{{token}}",
+								"description": "The auth token. Not needed in this endpoint.\nIf provided, returns if this user has liked a thread or not.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/board",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"board"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2",
+									"description": "Get the last 100 records which their id's are less than or equal this value. If this value is not provided or it's zero it will return all of the latest 100 rows.",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Board No Auth",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "auth",
+										"value": "token",
+										"description": "The auth token. Not needed in this endpoint.",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/board?from=2",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"board"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "2",
+											"description": "Get the last 100 records which their id's are less than or equal this value. If this value is not provided or it's zero it will return all of the latest 100 rows."
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "content-length",
+									"value": "34"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 03 Feb 2022 16:19:21 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"data\": \"test\",\n        \"likes\": 0\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Like Thread",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth",
+								"value": "{{token}}",
+								"description": "The auth token.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/like?board_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"like"
+							],
+							"query": [
+								{
+									"key": "board_id",
+									"value": "1",
+									"description": "The thread/board to like."
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Like Thread Duplicate",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "auth",
+										"value": "{{token}}",
+										"description": "The auth token.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/like?board_id=1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"like"
+									],
+									"query": [
+										{
+											"key": "board_id",
+											"value": "1",
+											"description": "The thread/board to like."
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "content-length",
+									"value": "26"
+								},
+								{
+									"key": "date",
+									"value": "Fri, 04 Feb 2022 07:31:31 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"duplicate like\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Like Thread",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "auth",
+								"value": "{{token}}",
+								"description": "The auth token.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/like?board_id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"like"
+							],
+							"query": [
+								{
+									"key": "board_id",
+									"value": "1",
+									"description": "The thread/board to like."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post thread",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\": \"nice cock bro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/post",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post thread",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "auth",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"text\": \"nice cock bro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/post",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"post"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "content-length",
+									"value": "13"
+								},
+								{
+									"key": "date",
+									"value": "Fri, 04 Feb 2022 14:44:53 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"post_id\": 3\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
